@@ -14,13 +14,17 @@ namespace RCsemi
 /*ロータリーエンコーダインターフェース*/
 class RotaryEncoder
 {
+protected:
+	signed int count_;
 public:
 	/*カウントをクリアする*/
 	virtual void clearCount() = 0;
 
 	/*現在のカウント(count_)を返す*/
-	signed int get_count()    = 0;
-
+	inline signed int get_count()
+	{
+		return count_;
+	}
 
 	virtual ~RotaryEncoder() = 0;
 };
