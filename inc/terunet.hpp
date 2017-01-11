@@ -35,13 +35,13 @@ public:
 	/*
 	 * terunetにframeを送る
 	 */
-	virtual int send(TerunetFrame_t& frame) = 0;
+	virtual int Send(TerunetFrame_t& frame) = 0;
 
 	/*
 	 * trunetから自分宛てのreplyを受け取る
 	 * 返り値は成功したら0,タイムアウトしたら1,その他失敗したら2
 	 */
-	virtual int recieve(TerunetFrame_t* reply,int timeout_ms) = 0;
+	virtual int Recieve(TerunetFrame_t* reply,int timeout_ms) = 0;
 
 	/*
 	 * terunetにframeを流す.
