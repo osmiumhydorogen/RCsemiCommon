@@ -19,7 +19,7 @@ public:
 	 * 	エラーステータス
 	 * 	0:成功 1:IM315RXだった 負の値はその他
 	 */
-	virtual int SendPacket(uint8_t bytes[8]) = 0;
+	virtual int SendPacket(const uint8_t bytes[8]) = 0;
 
 	/*
 	 * IM315RX,TRXに送られてきたデータをバイナリに戻してbytesに格納する

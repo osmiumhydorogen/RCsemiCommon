@@ -35,7 +35,7 @@ public:
 	/*
 	 * terunetにframeを送る
 	 */
-	virtual int Send(TerunetFrame_t& frame) = 0;
+	virtual int Send(const TerunetFrame_t& frame) = 0;
 
 	/*
 	 * trunetから自分宛てのreplyを受け取る
