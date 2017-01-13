@@ -15,10 +15,10 @@ namespace RCsemi
 	{
 	public:
         /*
-            デューティー比Dutyでモーターをドライブする
+            デューティー比dutyでモーターをドライブする
             返り値は実際に設定された値
         */
-		virtual int drive(int Duty)  = 0;
+		virtual int drive(int duty)  = 0;
 
         /*
             モーターにブレーキをかける.
