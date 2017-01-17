@@ -1,2 +1,2 @@
 # RCsemiInterfaces
-Interfaces used in RCsemi (e.g. motor,rotary encoder)
+Interfaces used in TokyoNCT Robocon seminar (e.g. motor,rotary encoder)
