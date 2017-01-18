@@ -5,7 +5,7 @@
  *      Author: osmium
  */
 
-#include <RCsemiCommon/inc/ringbuf.hpp>
+#include "../inc/ringbuf.hpp"
 
 namespace RCsemi
 {
