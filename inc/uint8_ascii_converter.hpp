@@ -14,24 +14,26 @@ namespace RCsemi
 class Uint8AsciiConverter
 {
 private:
-	uint8_t* ascii_2_four_bit_table_;
-	char*    four_bit_2_ascii_table_;
+	static const uint8_t ascii_2_four_bit_table_[];
+	static const char    four_bit_2_ascii_table_[];
 	Uint8AsciiConverter();
 	static Uint8AsciiConverter* instance_;
 public:
-	inline void operator()(const uint8_t byte,char output[2])
+	inline char* operator()(const uint8_t byte,char output[2])
 	{
-		output[0] = four_bit_2_ascii_table_[byte >> 4];
-		output[1] = four_bit_2_ascii_table_[byte & 0xf];
+		output[0] = four_bit_2_ascii_table_[(int)(byte >> 4)];
+		output[1] = four_bit_2_ascii_table_[(int)(byte & 0xf)];
+		return output;
 	}
 
-	inline void operator()(const char ascii[2], uint8_t* output)
+	inline uint8_t operator()(const char ascii[2], uint8_t* output)
 	{
-		*output  = ascii_2_four_bit_table_[ascii[0] - '0'] << 4;
-		*output |= ascii_2_four_bit_table_[ascii[1] - '0'] & 0xf;
+		*output  = ascii_2_four_bit_table_[(int)(ascii[0] - '0')] << 4;
+		*output |= ascii_2_four_bit_table_[(int)(ascii[1] - '0')] & 0xf;
+		return *output;
 	}
 
-	Uint8AsciiConverter* getInstance()
+	static Uint8AsciiConverter* getInstance()
 	{
 		if(!instance_) instance_ = new Uint8AsciiConverter;
 		return instance_;
