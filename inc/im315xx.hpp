@@ -10,7 +10,15 @@
 
 namespace RCsemi
 {
-class IM315xx
+typedef struct IM315xxPacket_t_
+{
+	uint8_t node;
+	uint16_t id;
+	uint8_t rssi;
+	uint8_t data[8];
+}IM315xxPacket_t;
+
+class IM315xx_device
 {
 public:
 	/*
@@ -19,24 +27,24 @@ public:
 	 * 	エラーステータス
 	 * 	0:成功 1:IM315RXだった 負の値はその他
 	 */
-	virtual int sendPacket(const uint8_t bytes[8]) = 0;
+	virtual int sendPacket(const IM315xxPacket_t& packet) = 0;
 
 	/*
 	 * IM315RX,TRXに送られてきたデータをバイナリに戻してbytesに格納する
 	 * 返り値：
 	 * 	エラーステータス
-	 * 	0:成功 1:IM315TXだった 負の値はその他
+	 * 	0:成功 1:IM315TXだった 2:タイムアウト 負の値はその他
 	 */
-	virtual int recievePacket(uint8_t bytes[8]) = 0;
+	virtual int recievePacket(IM315xxPacket_t* packet) = 0;
 
-	virtual ~IM315xx(){};
+	virtual ~IM315xx_device(){};
 
 };
 
 /*
  * これをソースファイルで定義して実体を得られるようにする
  */
-IM315xx* GetIM315xx(int port_num);
+IM315xx_device* GetIM315xx(int port_num);
 }
 
 #endif /* INC_IM315XX_HPP_ */
