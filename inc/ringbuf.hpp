@@ -20,8 +20,13 @@ private:
 	int      remain_;
 	bool is_external_buf_;
 public:
+	//sizeバイトのバッファを確保
 	RingBuf(int size);
 	RingBuf(uint8_t* buf,int size);
+
+	//リングバッファにdataを追加.
+	//返り値:
+	//  0:バッファオーバーラン 1:成功
 	int PushData(uint8_t data);
 	int GetData(uint8_t* data,int max);
 	~RingBuf();

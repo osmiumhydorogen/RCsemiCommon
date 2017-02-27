@@ -43,6 +43,7 @@ int RingBuf::PushData(uint8_t data)
 		target_ptr  = 0;
 	}
 
+	//オーバーラン検出
 	if(!first_push && target_ptr == ptr_)
 	{
 		return 0;
