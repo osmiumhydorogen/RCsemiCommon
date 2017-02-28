@@ -29,6 +29,9 @@ public:
 	//  0:バッファオーバーラン 1:成功
 	int PushData(uint8_t data);
 	int GetData(uint8_t* data,int max);
+
+	int emptyBytes();
+
 	~RingBuf();
 };
 }

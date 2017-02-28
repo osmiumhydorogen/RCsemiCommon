@@ -73,6 +73,11 @@ int RingBuf::GetData(uint8_t* data,int max)
 	return num_of_data;
 }
 
+int RingBuf::emptyBytes()
+{
+	return size_ - remain_;
+}
+
 RingBuf::~RingBuf()
 {
 	if(!is_external_buf_)
