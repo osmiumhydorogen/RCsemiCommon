@@ -19,6 +19,7 @@ private:
 	int      size_;
 	int      remain_;
 	bool is_external_buf_;
+	bool accept_overwrite_;
 public:
 	//sizeバイトのバッファを確保
 	RingBuf(int size);
@@ -28,9 +29,18 @@ public:
 	//返り値:
 	//  0:バッファオーバーラン 1:成功
 	int PushData(uint8_t data);
-	int GetData(uint8_t* data,int max);
+	int PushData(const uint8_t* data,int nbytes);
 
-	int emptyBytes();
+	//リングバッファからmax_nbytes個データを取り出そうとする
+	//返り値:
+	// 実際にデータを取り出せた数
+	int GetData(uint8_t* data,int max_nbytes = 1);
+
+	//何バイトの空きがあるか返す
+	int emptyBytes() const;
+
+	//バッファオーバーランした時にreturnせずに古いデータを上書きするかどうか
+	inline void acceptOverwrite(bool accept_overwrite);
 
 	~RingBuf();
 };

@@ -7,6 +7,8 @@
 
 #ifndef INCLUDE_CAN_BUS_HPP_
 #define INCLUDE_CAN_BUS_HPP_
+
+#include <stdint.h>
 namespace RCsemi
 {
 

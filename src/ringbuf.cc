@@ -17,6 +17,7 @@ RingBuf::RingBuf(int size)
 	remain_ = 0;
 	last_ = size-1;
 	is_external_buf_ = false;
+	accept_overwrite_ = false;
 }
 
 RingBuf::RingBuf(uint8_t* buf,int size)
@@ -27,6 +28,7 @@ RingBuf::RingBuf(uint8_t* buf,int size)
 	ptr_    = 0;
 	remain_ = 0;
 	is_external_buf_ = true;
+	accept_overwrite_ = false;
 }
 
 int RingBuf::PushData(uint8_t data)
@@ -44,9 +46,13 @@ int RingBuf::PushData(uint8_t data)
 	}
 
 	//オーバーラン検出
-	if(!first_push && target_ptr == ptr_)
+	//if(!first_push && target_ptr == ptr_)
+	if(remain_ && target_ptr == ptr_)
 	{
-		return 0;
+		if(!accept_overwrite_)
+			return 0;
+		else
+			++ptr_;
 	}
 	else
 	{
@@ -60,10 +66,19 @@ int RingBuf::PushData(uint8_t data)
 	return 1;
 }
 
-int RingBuf::GetData(uint8_t* data,int max)
+int RingBuf::PushData(const uint8_t* data,int nbytes)
+{
+	for(int i=0;i<nbytes;i++)
+	{
+		if(!PushData(data[i]))return 0;
+	}
+	return 1;
+}
+
+int RingBuf::GetData(uint8_t* data,int max_nbytes)
 {
 	int ptr = ptr_,num_of_data = 0;
-	for(num_of_data = 0;(num_of_data < max) && remain_;remain_--)
+	for(num_of_data = 0;(num_of_data < max_nbytes) && remain_;remain_--)
 	{
 		data[num_of_data++] = buf_[ptr++];
 		if(ptr >= size_)
@@ -73,9 +88,14 @@ int RingBuf::GetData(uint8_t* data,int max)
 	return num_of_data;
 }
 
-int RingBuf::emptyBytes()
+int RingBuf::emptyBytes() const
 {
 	return size_ - remain_;
+}
+
+void RingBuf::acceptOverwrite(bool accept_overwrite)
+{
+	accept_overwrite_ = accept_overwrite;
 }
 
 RingBuf::~RingBuf()
