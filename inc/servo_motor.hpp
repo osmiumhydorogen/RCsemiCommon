@@ -7,12 +7,15 @@
 
 #ifndef SERVO_MOTOR_HPP_
 #define SERVO_MOTOR_HPP_
+#include "angle_deg.hpp"
+
 namespace RCsemi
 {
 class ServoMotor
 {
 public:
-	virtual int drive(int target_percent) = 0;
+	virtual int       drive(int target_percent)   = 0;
+	virtual Angle_deg drive(Angle_deg target_deg) = 0;
 	virtual int getVal() = 0;
 	virtual ~ServoMotor(){};
 };
