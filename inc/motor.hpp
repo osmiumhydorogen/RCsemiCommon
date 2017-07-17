@@ -11,7 +11,7 @@
 namespace RCsemi
 {
     /*モーターのインターフェース*/
-	class Motor
+	class Motor : public AnalogActuator
 	{
 	public:
         /*
@@ -30,7 +30,7 @@ namespace RCsemi
             現在のデューティー比を返す
         */
 		virtual int getCurrentDuty() = 0;
-
+		virtual int getCurrentValue() = 0;
 
 		virtual ~Motor()             {};
 	};
