@@ -13,10 +13,11 @@ namespace RCsemi
 {
 class AnalogSensor
 {
+public:
 	//値を返す
 	virtual int value() = 0;
 
-	~AnalogSensor(){}
+	virtual ~AnalogSensor(){}
 };
 }
 

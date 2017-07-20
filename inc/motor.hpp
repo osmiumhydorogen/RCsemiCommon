@@ -8,6 +8,8 @@
 #ifndef INCLUDE_MOTOR_HPP_
 #define INCLUDE_MOTOR_HPP_
 
+#include "analog_actuator.hpp"
+
 namespace RCsemi
 {
     /*モーターのインターフェース*/

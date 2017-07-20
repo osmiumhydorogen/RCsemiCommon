@@ -15,6 +15,7 @@ namespace RCsemi
  */
 class AnalogActuator
 {
+public:
 	//valueで駆動する.返り値は実際に駆動された値.
 	virtual int drive(int value) = 0;
 
