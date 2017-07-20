@@ -17,6 +17,7 @@ namespace RCsemi
 		int val_;
 	public:
 		Angle_deg(int val){val_ = val;}
+		Angle_deg(){val_ = 0;}
 		Angle_deg& operator=(int val){val_ = val;return *this;}
 		operator int(){return val_;}
 	};
