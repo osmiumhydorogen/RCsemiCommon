@@ -20,7 +20,7 @@ public:
 	virtual int getDuty() = 0;
 	virtual Angle_deg getAngle() = 0;
 
-	virtual Angle_deg getAngleRange() = 0;
+	virtual Angle_deg getAngleRange(){return Angle_deg();};
 	virtual ~ServoMotor(){};
 };
 }
