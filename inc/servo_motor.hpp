@@ -16,8 +16,11 @@ class ServoMotor
 public:
 	virtual int       drive(int target_percent)   = 0;
 	virtual Angle_deg drive(Angle_deg target_deg) = 0;
+
 	virtual int getDuty() = 0;
 	virtual Angle_deg getAngle() = 0;
+
+	virtual Angle_deg getAngleRange() = 0;
 	virtual ~ServoMotor(){};
 };
 }
