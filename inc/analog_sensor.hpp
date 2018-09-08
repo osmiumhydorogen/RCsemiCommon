@@ -11,11 +11,12 @@
 
 namespace RCsemi
 {
+template <typename VAL_TYPE>
 class AnalogSensor
 {
 public:
 	//値を返す
-	virtual int value() = 0;
+	virtual VAL_TYPE value() = 0;
 
 	virtual ~AnalogSensor(){}
 };

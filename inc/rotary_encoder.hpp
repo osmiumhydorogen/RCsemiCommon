@@ -21,7 +21,7 @@ public:
 	/*現在のカウント(count_)を返す*/
 	virtual int getCount() = 0;
 
-	virtual ~RotaryEncoder() = 0;
+	virtual ~RotaryEncoder(){};
 };
 
 }

@@ -34,6 +34,8 @@ namespace RCsemi
 		virtual int getCurrentDuty() = 0;
 		virtual int getCurrentValue() = 0;
 
+		virtual bool isBrake() = 0;
+
 		virtual ~Motor()             {};
 	};
 }
